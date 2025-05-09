@@ -1,5 +1,7 @@
+// middleware/Auth.middleware.ts
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { buildErrorResponse } from "../../src/utils/response";
 
 export const verifyToken = (
   req: Request,
@@ -8,7 +10,8 @@ export const verifyToken = (
 ) => {
   const token = req.headers["authorization"]?.split(" ")[1];
   if (!token) {
-    return res.status(403).json({ message: "No token provided!" });
+    res.status(403).json(buildErrorResponse("Token not provided!"));
+    return;
   }
 
   try {
@@ -16,6 +19,7 @@ export const verifyToken = (
     (req as any).user = decoded;
     next();
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized!" });
+    res.status(401).json(buildErrorResponse("Unauthorized!"));
+    return;
   }
 };

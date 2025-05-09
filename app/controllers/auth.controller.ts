@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   buildErrorResponse,
   buildSuccessResponse,
+  getResponseErrorMessage,
 } from "../../src/utils/response";
 import { loginUser, registerUser } from "../service/auth.service";
 
@@ -11,7 +12,7 @@ export const register = async (req: Request, res: Response) => {
     await registerUser(name, username, password);
     res.status(201).json(buildSuccessResponse(`${name} berhasil dibuat`, null));
   } catch (error: unknown) {
-    const errorMessage = (error as Error).message;
+    const errorMessage = getResponseErrorMessage(error);
     res.status(400).json(buildErrorResponse(errorMessage));
   }
 };
@@ -23,7 +24,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.status(200).json(buildSuccessResponse("Login Berhasil", result));
   } catch (error: unknown) {
-    const errorMessage = (error as Error).message;
+    const errorMessage = getResponseErrorMessage(error);
     res.status(400).json(buildErrorResponse(errorMessage));
   }
 };

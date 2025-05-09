@@ -1,6 +1,12 @@
 import { Router } from "express";
 import { login, register } from "../controllers/auth.controller";
 import { verifyToken } from "../middleware/Auth.middleware";
+import {
+  createUserHandler,
+  deleteUserHandler,
+  getUsersHandler,
+  updateUserHandler,
+} from "../controllers/user.controller";
 
 const router = Router();
 
@@ -18,5 +24,23 @@ router.get(
     res.json({ user: (req as any).user });
   }
 );
+
+router.use(verifyToken);
+
+router.get("/users", (req, res) => {
+  getUsersHandler(req, res);
+});
+
+router.post("/users", (req, res) => {
+  createUserHandler(req, res);
+});
+
+router.put("/users/:id", (req, res) => {
+  updateUserHandler(req, res);
+});
+
+router.delete("/users/:id", (req, res) => {
+  deleteUserHandler(req, res);
+});
 
 export default router;
