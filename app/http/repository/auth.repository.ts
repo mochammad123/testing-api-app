@@ -1,4 +1,4 @@
-import { pool } from "../database/postgresql.database";
+import { pool } from "../../database/postgresql.database";
 
 export const findUserByUsername = async (username: string) => {
   const result = await pool.query("SELECT * FROM users WHERE username = $1", [

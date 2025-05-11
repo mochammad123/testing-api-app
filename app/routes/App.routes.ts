@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { login, register } from "../controllers/auth.controller";
+import { login, register } from "../http/controllers/auth.controller";
 import { verifyToken } from "../middleware/Auth.middleware";
 import {
   createUserHandler,
   deleteUserHandler,
   getUsersHandler,
   updateUserHandler,
-} from "../controllers/user.controller";
+} from "../http/controllers/user.controller";
 
 const router = Router();
 

@@ -3,7 +3,7 @@ import {
   buildErrorResponse,
   buildSuccessResponse,
   getResponseErrorMessage,
-} from "../../src/utils/response";
+} from "../../../src/utils/response";
 import { loginUser, registerUser } from "../service/auth.service";
 
 export const register = async (req: Request, res: Response) => {

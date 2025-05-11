@@ -1,4 +1,4 @@
-import { pool } from "../database/postgresql.database";
+import { pool } from "../../database/postgresql.database";
 import { IUser } from "../models/auth.model";
 
 export const getAllUser = async (): Promise<Omit<IUser, "password">[]> => {

@@ -9,7 +9,7 @@ import {
   buildErrorResponse,
   buildSuccessResponse,
   getResponseErrorMessage,
-} from "../../src/utils/response";
+} from "../../../src/utils/response";
 
 export const getUsersHandler = async (_: Request, res: Response) => {
   try {
