@@ -15,6 +15,10 @@ export const createUserService = async (
   username: string,
   password: string
 ) => {
+  if (name === '' || username === '' || password === '') {
+    throw new Error("Semua field harus diisi");
+  }
+  
   const user = await findUserByUsername(username);
   if (user) {
     throw new Error("Username sudah terdaftar, silahkan gunakan username lain");
