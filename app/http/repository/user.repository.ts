@@ -30,8 +30,8 @@ export const updateUser = async (
   user: Partial<Omit<IUser, "id">>
 ): Promise<void> => {
   await pool.query(
-    "UPDATE users SET name = $1, username = $2, password = $3 WHERE id = $3",
-    [user.name, user.username, id]
+    "UPDATE users SET name = $1, username = $2, password = $3 WHERE id = $4",
+    [user.name, user.username, user.password, id]
   );
 };
 
